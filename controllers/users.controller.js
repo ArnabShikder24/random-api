@@ -41,10 +41,40 @@ const saveRandomUser = async (req, res) => {
       } catch (error) {
             res.status(500).send(error.message);
       }
-} 
+}
+
+const updateUser = async (req, res) => {
+      try {
+            const id = req.params.id;
+            const oneUser = await users.findOne({_id: id});
+            const {name, gender, email, phone, address, photoUrl} = req.body;
+            oneUser.name = name;
+            oneUser.gender = gender;
+            oneUser.email = email;
+            oneUser.phone = phone;
+            oneUser.address = address;
+            oneUser.photoUrl = photoUrl;
+            await oneUser.save();
+            res.status(200).json(oneUser)
+      } catch (error) {
+            res.status(500).send(error.message);
+      }
+}
+
+const deleteUser = async (req, res) => {
+      try {
+            const id = req.params.id;
+            await users.deleteOne({_id: id});
+            res.status(200).json({meessage: `The user no ${id} is Deleted`}); 
+      } catch (error) {
+            res.status(500).send(error.message);
+      }
+}
 
 module.exports = {
       getAllUser,
       getRandomUser,
-      saveRandomUser
+      saveRandomUser,
+      updateUser,
+      deleteUser
 }
