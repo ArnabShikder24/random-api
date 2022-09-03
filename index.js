@@ -1,11 +1,11 @@
 const app = require("./app");
+const dev = require("./config/config");
 // const { MongoClient, ServerApiVersion } = require('mongodb');
-require("dotenv").config();
-const PORT = process.env.PORT || 5000;
+const PORT = dev.app.port;
 
 
 //Database
-// const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.g5hmi.mongodb.net/?retryWrites=true&w=majority`;
+// const uri = ``;
 // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 // async function run() {
