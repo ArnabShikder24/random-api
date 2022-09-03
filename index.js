@@ -1,7 +1,6 @@
 const app = require("./app");
 // const { MongoClient, ServerApiVersion } = require('mongodb');
 require("dotenv").config();
-const userRouter = require("./routes/users.route");
 const PORT = process.env.PORT || 5000;
 
 
@@ -19,23 +18,6 @@ const PORT = process.env.PORT || 5000;
 // }
 // run().catch(console.dir);
 
-//routes
-app.use(userRouter);
-
-
-app.get("/", (req, res) => {
-      res.send({
-            success: true,
-            message: "server is Running..."
-      })
-})
-
-// 404 route
-app.use((req, res, next) => {
-      res.status(404).json({
-            message: "resourse not found"
-      });
-})
 
 app.listen(PORT, () => {
       console.log(`The server is Running at ${PORT}`);
